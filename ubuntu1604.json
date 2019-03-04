@@ -6,7 +6,9 @@
     "ruby_version": "2.5.1",
     "git_crypt_version": "0.6.0",
     "saw_version": "0.2.2",
-    "ssh_username": "vagrant"
+    "ssh_username": "vagrant",
+    "vagrant_cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}"
+
   },
   "provisioners": [
     {
@@ -133,6 +135,7 @@
       {
         "type": "vagrant-cloud",
         "box_tag": "kmcquade/aws-workbox",
+        "access_token": "{{user `vagrant_cloud_token`}}",
         "version": "{{user `version`}}"
       }
     ]

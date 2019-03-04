@@ -11,8 +11,10 @@ sudo groupadd rbenv
 sudo usermod -aG rbenv ec2-user
 
 # Install pre-requirements
-yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel \
-  make bzip2 autoconf automake libtool bison curl git-core
+apt-get install -y libssl-dev zlib1g-dev
+
+#yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel \
+#  make bzip2 autoconf automake libtool bison curl git-core
 
 # Check if Git is installed
 hash git 2>&- || {
@@ -87,19 +89,21 @@ export RBENV_ROOT=/usr/local/rbenv
 export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init -)"
 #RUBY_CONFIGURE_OPTS=--disable-install-doc rbenv install 2.5.1
-rbenv install 2.5.1
+rbenv install --verbose 2.5.1
 rbenv global 2.5.1
 gem install bundler --no-ri --no-rdoc
 
 ruby --version
 
 echo "Installing gems for inspec testing"
-gem install --no-rdoc rake rspec serverspec specinfra test-kitchen kitchen-ansible kitchen-inspec kitchen-sharedtests kitchen-sync kitchen-transport-rsync kitchen-docker
+gem install --no-rdoc --backtrace rake rspec serverspec specinfra test-kitchen
 
-gem install --no-rdoc test-kitchen -v 1.0
+#kitchen-ansible kitchen-inspec kitchen-sharedtests kitchen-sync kitchen-transport-rsync kitchen-docker
 
-gem install --no-rdoc kitchen-sharedtests -v 0.2.0
+gem install --no-rdoc --backtrace test-kitchen -v 1.0
 
-gem install inspec
-inspec env | tr -d '\15\32' > /etc/profile.d/inspec.sh
-gem install awspec
+gem install --no-rdoc --backtrace kitchen-sharedtests -v 0.2.0
+
+#gem install inspec --backtrace
+#inspec env | tr -d '\15\32' > /etc/profile.d/inspec.sh
+#gem install awspec --backtrace

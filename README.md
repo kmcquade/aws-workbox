@@ -5,8 +5,17 @@
 # Usage
 
 * Install Virtualbox
-* Install Packer
 * Install Vagrant
+
+```bash
+vagrant init kmcquade/aws-workbox \
+  --box-version 0.0.1
+vagrant up
+```
+
+### Building from scratch
+
+* Install Packer
 
 Run the following:
 
