@@ -7,6 +7,7 @@
 * Install Virtualbox
 * Install Vagrant
 
+Run the following:
 ```bash
 vagrant init kmcquade/aws-workbox \
   --box-version 0.0.1
